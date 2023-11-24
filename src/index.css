@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.nav-items .active {
+  color: #ff7104;
+  border-bottom: 3px solid #ff7104;
+  padding-bottom: 4px;
+}

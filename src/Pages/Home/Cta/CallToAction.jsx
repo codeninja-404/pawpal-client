@@ -5,14 +5,13 @@ import ctaImg from "../../../assets/cta.jpg";
 
 const CallToAction = () => {
   return (
-    <section className="my-14">
+    <section className="my-14 p-2">
       <Container>
-        <SectionTitle heading={"Call to action"}></SectionTitle>
+        <SectionTitle
+          heading={"Change a Life, Adopt a Pet Today!"}
+        ></SectionTitle>
         <div className=" mx-auto text-center">
-          <h2 className="text-4xl font-bold mb-4 text-orange-500 uppercase">
-            Change a Life, Adopt a Pet Today!
-          </h2>
-          <p className="text-lg mb-8">
+          <p className="text-xl mb-8">
             Experience the joy of bringing a furry friend into your home. Give
             them love, care, and a forever family.
           </p>

@@ -9,6 +9,7 @@ import {
   Collapse,
 } from "@material-tailwind/react";
 import { ProfileMenu } from "./ProfileMenu";
+import { NavLink } from "react-router-dom";
 const NavBar = () => {
   const [openNav, setOpenNav] = React.useState(false);
 
@@ -20,46 +21,30 @@ const NavBar = () => {
   }, []);
 
   const navList = (
-    <ul className="mt-2 mb-4 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
+    <ul className="mt-2 nav-items mb-4 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
       <Typography
         as="li"
         variant="small"
         color="blue-gray"
-        className="p-1 font-normal"
+        className="p-1 font-bold"
       >
-        <a href="#" className="flex items-center">
-          Pages
-        </a>
+        <NavLink to="/">HOME</NavLink>
       </Typography>
       <Typography
         as="li"
         variant="small"
         color="blue-gray"
-        className="p-1 font-normal"
+        className="p-1 font-bold"
       >
-        <a href="#" className="flex items-center">
-          Account
-        </a>
+        <NavLink to="/petListing">PET LISTING</NavLink>
       </Typography>
       <Typography
         as="li"
         variant="small"
         color="blue-gray"
-        className="p-1 font-normal"
+        className="p-1 font-bold"
       >
-        <a href="#" className="flex items-center">
-          Blocks
-        </a>
-      </Typography>
-      <Typography
-        as="li"
-        variant="small"
-        color="blue-gray"
-        className="p-1 font-normal"
-      >
-        <a href="#" className="flex items-center">
-          Docs
-        </a>
+        <NavLink to="/">DONATION CAMPAIGNS</NavLink>
       </Typography>
     </ul>
   );
@@ -74,11 +59,7 @@ const NavBar = () => {
             <div className="flex items-center gap-4">
               <div className="mr-4 hidden lg:block">{navList}</div>
               <div className="flex items-center gap-x-1">
-                <Button
-                  variant="text"
-                  size="sm"
-                  className="hidden lg:inline-block"
-                >
+                <Button size="sm" className="hidden lg:inline-block">
                   <span>Log In</span>
                 </Button>
                 <div className="hidden lg:inline-block">
@@ -128,14 +109,14 @@ const NavBar = () => {
             </div>
           </div>
           <div className="z-40">
-          <Collapse open={openNav}>
-            {navList}
-            <div className="flex items-center gap-x-1">
-              <Button fullWidth variant="text" size="sm" className="">
-                <span>Log In</span>
-              </Button>
-            </div>
-          </Collapse>
+            <Collapse open={openNav}>
+              {navList}
+              <div className="flex items-center gap-x-1">
+                <Button size="sm" className="">
+                  <span>Log In</span>
+                </Button>
+              </div>
+            </Collapse>
           </div>
         </Navbar>
       </div>
