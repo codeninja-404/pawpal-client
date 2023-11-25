@@ -4,7 +4,8 @@ const Footer = () => {
   return (
     <div>
       <footer className="w-full bg-black text-white p-8">
-        <div className="flex flex-row flex-wrap items-center justify-center gap-y-6 gap-x-12  text-center md:justify-between">
+       <div className="container mx-auto">
+       <div className="flex flex-row flex-wrap items-center justify-center gap-y-6 gap-x-12  text-center md:justify-between">
           <img className="cursor-pointer w-44   " src={logo} />
           <ul className="flex flex-wrap items-center gap-y-2 gap-x-8">
             <li>
@@ -45,6 +46,7 @@ const Footer = () => {
         <p className="block text-center font-sans text-base font-normal leading-relaxed text-blue-gray-200 antialiased">
           © 2023 All rights reserved by Saidul Arefin
         </p>
+       </div>
       </footer>
     </div>
   );
