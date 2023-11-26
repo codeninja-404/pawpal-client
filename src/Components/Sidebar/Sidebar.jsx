@@ -3,35 +3,18 @@ import {
   List,
   ListItem,
   ListItemPrefix,
-  ListItemSuffix,
-  Chip,
-  Button,
 } from "@material-tailwind/react";
 import { MdPlaylistAddCircle } from "react-icons/md";
 
-import { useState } from "react";
 import { NavLink } from "react-router-dom";
 
 const Sidebar = () => {
-  const [open, setOpen] = useState("hidden");
-  const handleDashboard = () => {
-    if (!open) {
-      setOpen("hidden");
-    } else {
-      setOpen("");
-    }
-  };
-  console.log(open);
-
   return (
-    <div className="bg-deep-orange-200 p-4 text-white">
-      <Button className="md:hidden" onClick={handleDashboard}>
-        {open ? "Open" : "Close"}
-      </Button>
-      <div className={`${open} md:block h-screen w-full max-w-[20rem]  `}>
-        <div className="mb-2 p-4">
+    <div className=" bg-blue-gray-300 p-4 lg:my-5 text-white">
+      <div className={` h-screen w-full max-w-[20rem]  `}>
+        <div className="mb-2 p-4 uppercase border-white border-2 text-center">
           <Typography variant="h5" color="white">
-            User Dashboard
+            User
           </Typography>
         </div>
         <List id="sidebar">
@@ -66,7 +49,8 @@ const Sidebar = () => {
             <ListItem>
               <ListItemPrefix>
                 <p className="text-black uppercase flex gap-2 text-sm items-center">
-                  <MdPlaylistAddCircle className="text-2xl" /> Create donation campaign
+                  <MdPlaylistAddCircle className="text-2xl" /> Create donation
+                  campaign
                 </p>
               </ListItemPrefix>
             </ListItem>
@@ -75,7 +59,8 @@ const Sidebar = () => {
             <ListItem>
               <ListItemPrefix>
                 <p className="text-black uppercase flex gap-2 items-center">
-                  <MdPlaylistAddCircle className="text-2xl" />My donation campaign
+                  <MdPlaylistAddCircle className="text-2xl" />
+                  My donation campaign
                 </p>
               </ListItemPrefix>
             </ListItem>
@@ -89,7 +74,6 @@ const Sidebar = () => {
               </ListItemPrefix>
             </ListItem>
           </NavLink>
-         
         </List>
       </div>
     </div>

@@ -7,6 +7,7 @@ import SignIn from "../Pages/Signin/SignIn";
 import SignUp from "../Pages/Register/SignUp";
 import Dashboard from "../Layout/Dashboard";
 import Addpet from "../Pages/Dashboard/Addpet";
+import Myaddedpets from "../Pages/Dashboard/Myaddedpets/Myaddedpets";
 
 export const router = createBrowserRouter([
   {
@@ -36,9 +37,14 @@ export const router = createBrowserRouter([
     path: "/dashboard",
     element: <Dashboard></Dashboard>,
     children: [
+      // User routes
       {
         path: "/dashboard/addPet",
         element: <Addpet></Addpet>,
+      },
+      {
+        path: "/dashboard/addedPets",
+        element: <Myaddedpets></Myaddedpets>,
       },
     ],
   },

@@ -17,7 +17,7 @@ export function ProfileMenu() {
       .catch((error) => console.log(error));
   };
   return (
-    <div className={`${!user ? "hidden" : ""}`}>
+    < div className={`${!user ? "hidden" : ""}`}>
       <Menu>
         <MenuHandler>
           <Avatar
@@ -45,7 +45,7 @@ export function ProfileMenu() {
             </svg>
 
             <Typography variant="small" className="font-medium">
-              <Link to='dashboard'>
+              <Link to='/dashboard/addedPets'>
               DashBoard</Link>
             </Typography>
           </MenuItem>

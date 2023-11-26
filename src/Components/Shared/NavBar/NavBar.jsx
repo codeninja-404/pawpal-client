@@ -10,10 +10,11 @@ import {
 } from "@material-tailwind/react";
 import { ProfileMenu } from "./ProfileMenu";
 import { Link, NavLink } from "react-router-dom";
+import useAuth from "../../../Hooks/useAuth";
 
 const NavBar = () => {
   const [openNav, setOpenNav] = useState(false);
-  
+  const { user } = useAuth();
 
   useEffect(() => {
     window.addEventListener(
@@ -61,9 +62,9 @@ const NavBar = () => {
             <div className="flex items-center gap-4">
               <div className="mr-4 hidden lg:block">{navList}</div>
               <div className="flex items-center gap-x-1">
-                <Link to="signin">
+                <Link to="/signin" className={`${user ? "hidden" : ""}`}>
                   <Button size="sm" className="hidden lg:inline-block">
-                    <span>sign in</span>{" "}
+                    <span>sign in</span>
                   </Button>
                 </Link>
 
@@ -117,7 +118,7 @@ const NavBar = () => {
             <Collapse open={openNav}>
               {navList}
               <div className="flex items-center gap-x-1">
-                <Link to="signin">
+                <Link to="/signin"  className={`${user ? "hidden" : ""}`}>
                   <Button size="sm">
                     <span>sign in</span>{" "}
                   </Button>
