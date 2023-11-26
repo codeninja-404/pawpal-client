@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect, useState } from "react";
 import logo from "../../../assets/logo.png";
 
 import {
@@ -10,8 +10,10 @@ import {
 } from "@material-tailwind/react";
 import { ProfileMenu } from "./ProfileMenu";
 import { Link, NavLink } from "react-router-dom";
+
 const NavBar = () => {
-  const [openNav, setOpenNav] = React.useState(false);
+  const [openNav, setOpenNav] = useState(false);
+  
 
   useEffect(() => {
     window.addEventListener(

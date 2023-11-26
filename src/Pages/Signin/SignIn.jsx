@@ -2,9 +2,29 @@ import { Button } from "@material-tailwind/react";
 import Container from "../../Components/Shared/Container/Container";
 import { FcGoogle } from "react-icons/fc";
 import { TfiGithub } from "react-icons/tfi";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import useAuth from "../../Hooks/useAuth";
 
 const SignIn = () => {
+  const { googleSignIn, gitHubSignIn } = useAuth();
+
+  const navigate = useNavigate();
+
+  const handleGoogleSignIn = () => {
+    googleSignIn()
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((err) => console.log(err));
+  };
+  const handleGitHubSignIn = () => {
+    gitHubSignIn()
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((err) => console.log(err));
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -23,11 +43,11 @@ const SignIn = () => {
             <h1 className="font-bold uppercase mb-5 text-5xl">sign in !</h1>
             <div className="flex gap-3 my-4 items-center text-2xl uppercase font-bold">
               <p>Continue with: </p>
-              <Button className="rounded-full">
+              <Button onClick={handleGoogleSignIn} className="rounded-full">
                 <FcGoogle className="text-2xl" />
               </Button>
 
-              <Button className="rounded-full">
+              <Button onClick={handleGitHubSignIn} className="rounded-full">
                 <TfiGithub className="text-2xl" />
               </Button>
             </div>
@@ -75,7 +95,9 @@ const SignIn = () => {
               <div className="flex justify-center gap-4 items-center">
                 <p>Not a user?</p>
                 <Link to="/signup">
-                  <Button size='sm' className="bg-purple-400">SIGN UP</Button>
+                  <Button size="sm" className="bg-purple-400">
+                    SIGN UP
+                  </Button>
                 </Link>
               </div>
             </div>

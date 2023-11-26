@@ -5,6 +5,8 @@ import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import Petlisting from "../Pages/PetListing/PetListing/Petlisting";
 import SignIn from "../Pages/Signin/SignIn";
 import SignUp from "../Pages/Register/SignUp";
+import Dashboard from "../Layout/Dashboard";
+import Addpet from "../Pages/Dashboard/Addpet";
 
 export const router = createBrowserRouter([
   {
@@ -29,5 +31,15 @@ export const router = createBrowserRouter([
   {
     path: "/signup",
     element: <SignUp></SignUp>,
+  },
+  {
+    path: "/dashboard",
+    element: <Dashboard></Dashboard>,
+    children: [
+      {
+        path: "/dashboard/addPet",
+        element: <Addpet></Addpet>,
+      },
+    ],
   },
 ]);
