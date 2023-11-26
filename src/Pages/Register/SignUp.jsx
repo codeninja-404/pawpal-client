@@ -2,33 +2,52 @@ import { Avatar, Button } from "@material-tailwind/react";
 import Container from "../../Components/Shared/Container/Container";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { imageUpload } from "../../api/utils";
+import useAuth from "../../Hooks/useAuth";
+import Swal from "sweetalert2";
 
 const SignUp = () => {
+  const { createUser, updateUserProfile } =
+    useAuth();
   const [imagePre, setImagePre] = useState(null);
+  const [photo, setPhoto ] = useState("");
 
-  const handleImageChange = (event) => {
+  const handleImageChange = async (event) => {
     const selectedImage = event.target.files[0];
-    console.log(selectedImage);
 
     if (selectedImage) {
-      // Read the selected image and set it in the state
       const reader = new FileReader();
       reader.onload = () => {
         setImagePre(reader.result);
+        setPhoto(selectedImage);
       };
       reader.readAsDataURL(selectedImage);
     } else {
-      // If no image is selected, reset the state
       setImagePre(null);
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const form = e.target;
     const name = form.name.value;
     const email = form.email.value;
     const password = form.password.value;
+    try {
+      const imageData = await imageUpload(photo);
+      const result = await createUser(email, password);
+      await updateUserProfile(name, imageData?.data?.display_url);
+      console.log(result);
+    } catch (err) {
+      console.log(err);
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: `${err}`,
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    }
 
     const info = { name, email, password };
     console.log(info);
