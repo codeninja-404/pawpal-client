@@ -9,7 +9,7 @@ import {
   Collapse,
 } from "@material-tailwind/react";
 import { ProfileMenu } from "./ProfileMenu";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 const NavBar = () => {
   const [openNav, setOpenNav] = React.useState(false);
 
@@ -59,9 +59,12 @@ const NavBar = () => {
             <div className="flex items-center gap-4">
               <div className="mr-4 hidden lg:block">{navList}</div>
               <div className="flex items-center gap-x-1">
-                <Button size="sm" className="hidden lg:inline-block">
-                  <span>Log In</span>
-                </Button>
+                <Link to="signin">
+                  <Button size="sm" className="hidden lg:inline-block">
+                    <span>sign in</span>{" "}
+                  </Button>
+                </Link>
+
                 <div className="hidden lg:inline-block">
                   <ProfileMenu></ProfileMenu>
                 </div>
@@ -112,9 +115,11 @@ const NavBar = () => {
             <Collapse open={openNav}>
               {navList}
               <div className="flex items-center gap-x-1">
-                <Button size="sm" className="">
-                  <span>Log In</span>
-                </Button>
+                <Link to="signin">
+                  <Button size="sm">
+                    <span>sign in</span>{" "}
+                  </Button>
+                </Link>
               </div>
             </Collapse>
           </div>
