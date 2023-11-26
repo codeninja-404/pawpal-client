@@ -41,8 +41,8 @@ const SignUp = () => {
     } catch (err) {
       console.log(err);
       Swal.fire({
-        position: "top-end",
-        icon: "success",
+        
+        icon: "error",
         title: `${err}`,
         showConfirmButton: false,
         timer: 1500,

@@ -2,13 +2,16 @@ import { Button } from "@material-tailwind/react";
 import Container from "../../Components/Shared/Container/Container";
 import { FcGoogle } from "react-icons/fc";
 import { TfiGithub } from "react-icons/tfi";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
+import Swal from "sweetalert2";
 
 const SignIn = () => {
-  const { googleSignIn, gitHubSignIn } = useAuth();
+  const { signIn, googleSignIn, gitHubSignIn } = useAuth();
 
   const navigate = useNavigate();
+  const location = useLocation();
+  const from = location?.state?.from?.pathname || "/";
 
   const handleGoogleSignIn = () => {
     googleSignIn()
@@ -25,15 +28,32 @@ const SignIn = () => {
       .catch((err) => console.log(err));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const form = e.target;
-
     const email = form.email.value;
     const password = form.password.value;
-
-    const info = { name, email, password };
-    console.log(info);
+    try {
+      const result = await signIn(email, password);
+      console.log(result);
+      navigate(from, { replace: true });
+      Swal.fire({
+        
+        icon: "success",
+        title: "Sign In successfull",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    } catch (err) {
+      console.log(err);
+      Swal.fire({
+        
+        icon: "error",
+        title: `${err}`,
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    }
   };
   return (
     <div>
