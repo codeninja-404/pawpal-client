@@ -5,9 +5,11 @@ import { TfiGithub } from "react-icons/tfi";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
 const SignIn = () => {
   const { signIn, googleSignIn, gitHubSignIn } = useAuth();
+  const axiosPublic = useAxiosPublic();
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -16,16 +18,56 @@ const SignIn = () => {
   const handleGoogleSignIn = () => {
     googleSignIn()
       .then((result) => {
-        console.log(result);
+        const userInfo = {
+          name: result.user?.displayName,
+          email: result.user?.email,
+          role: "user",
+        };
+        axiosPublic.post("/users", userInfo).then((res) => {
+          navigate(from, { replace: true });
+          Swal.fire({
+            icon: "success",
+            title: "Sign In successfull",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        });
       })
-      .catch((err) => console.log(err));
+      .catch((err) =>
+        Swal.fire({
+          icon: "err",
+          title: `${err}`,
+          showConfirmButton: false,
+          timer: 1500,
+        })
+      );
   };
   const handleGitHubSignIn = () => {
     gitHubSignIn()
       .then((result) => {
-        console.log(result);
+        const userInfo = {
+          name: result.user?.displayName,
+          email: result.user?.email,
+          role: "user",
+        };
+        axiosPublic.post("/users", userInfo).then((res) => {
+          navigate(from, { replace: true });
+          Swal.fire({
+            icon: "success",
+            title: "Sign In successfull",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        });
       })
-      .catch((err) => console.log(err));
+      .catch((err) =>
+        Swal.fire({
+          icon: "err",
+          title: `${err}`,
+          showConfirmButton: false,
+          timer: 1500,
+        })
+      );
   };
 
   const handleSubmit = async (e) => {
@@ -38,7 +80,6 @@ const SignIn = () => {
       console.log(result);
       navigate(from, { replace: true });
       Swal.fire({
-        
         icon: "success",
         title: "Sign In successfull",
         showConfirmButton: false,
@@ -47,7 +88,6 @@ const SignIn = () => {
     } catch (err) {
       console.log(err);
       Swal.fire({
-        
         icon: "error",
         title: `${err}`,
         showConfirmButton: false,

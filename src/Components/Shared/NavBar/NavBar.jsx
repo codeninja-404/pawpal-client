@@ -29,7 +29,7 @@ const NavBar = () => {
         as="li"
         variant="small"
         color="blue-gray"
-        className="p-1 font-bold"
+        className=" font-bold hover:text-[#ff7104]  hover:border-b-[3px] border-[#ff7104] "
       >
         <NavLink to="/">HOME</NavLink>
       </Typography>
@@ -37,7 +37,7 @@ const NavBar = () => {
         as="li"
         variant="small"
         color="blue-gray"
-        className="p-1 font-bold"
+        className="font-bold hover:text-[#ff7104]  hover:border-b-[3px] border-[#ff7104]"
       >
         <NavLink to="/petListing">PET LISTING</NavLink>
       </Typography>
@@ -45,7 +45,7 @@ const NavBar = () => {
         as="li"
         variant="small"
         color="blue-gray"
-        className="p-1 font-bold"
+        className="font-bold hover:text-[#ff7104]  hover:border-b-[3px] border-[#ff7104]"
       >
         <NavLink to="/">DONATION CAMPAIGNS</NavLink>
       </Typography>

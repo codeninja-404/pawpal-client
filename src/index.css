@@ -1,5 +1,4 @@
 @import '@sweetalert2/theme-dark/dark.css';
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

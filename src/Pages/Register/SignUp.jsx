@@ -1,16 +1,18 @@
 import { Avatar, Button } from "@material-tailwind/react";
 import Container from "../../Components/Shared/Container/Container";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { imageUpload } from "../../api/utils";
 import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
 const SignUp = () => {
-  const { createUser, updateUserProfile } =
-    useAuth();
+  const { createUser, updateUserProfile } = useAuth();
   const [imagePre, setImagePre] = useState(null);
-  const [photo, setPhoto ] = useState("");
+  const [photo, setPhoto] = useState("");
+  const axiosPublic = useAxiosPublic()
+  const navigate = useNavigate();
 
   const handleImageChange = async (event) => {
     const selectedImage = event.target.files[0];
@@ -33,15 +35,53 @@ const SignUp = () => {
     const name = form.name.value;
     const email = form.email.value;
     const password = form.password.value;
+    if (password.length < 6) {
+      return Swal.fire({
+        icon: "error",
+        title: "Password must have atleast 6 charecters.",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    } else if (!/[A-Z]/.test(password)) {
+      return Swal.fire({
+        icon: "error",
+        title: "Password must have atleast one uppercase letter.",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    } else if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
+      return Swal.fire({
+        icon: "error",
+        title: "Password must have special charecter.",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    }
     try {
       const imageData = await imageUpload(photo);
       const result = await createUser(email, password);
       await updateUserProfile(name, imageData?.data?.display_url);
-      console.log(result);
+      const userInfo = {
+        name: name,
+        email: email,
+        role: "user",
+      };
+      axiosPublic.post("/users", userInfo).then((res) => {
+        if (res.data.insertedId) {
+          
+          Swal.fire({
+            icon: "success",
+            title: "User created successfully.",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          navigate('/');
+        }
+      });
+
     } catch (err) {
       console.log(err);
       Swal.fire({
-        
         icon: "error",
         title: `${err}`,
         showConfirmButton: false,
