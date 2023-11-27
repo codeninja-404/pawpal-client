@@ -21,7 +21,7 @@ const SignIn = () => {
         const userInfo = {
           name: result.user?.displayName,
           email: result.user?.email,
-          role: "user",
+          role: "",
         };
         axiosPublic.post("/users", userInfo).then((res) => {
           navigate(from, { replace: true });
@@ -48,7 +48,7 @@ const SignIn = () => {
         const userInfo = {
           name: result.user?.displayName,
           email: result.user?.email,
-          role: "user",
+          role: "",
         };
         axiosPublic.post("/users", userInfo).then((res) => {
           navigate(from, { replace: true });

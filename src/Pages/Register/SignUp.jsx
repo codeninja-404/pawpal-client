@@ -40,21 +40,21 @@ const SignUp = () => {
         icon: "error",
         title: "Password must have atleast 6 charecters.",
         showConfirmButton: false,
-        timer: 1500,
+        
       });
     } else if (!/[A-Z]/.test(password)) {
       return Swal.fire({
         icon: "error",
         title: "Password must have atleast one uppercase letter.",
         showConfirmButton: false,
-        timer: 1500,
+        
       });
     } else if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
       return Swal.fire({
         icon: "error",
         title: "Password must have special charecter.",
         showConfirmButton: false,
-        timer: 1500,
+       
       });
     }
     try {
@@ -64,7 +64,7 @@ const SignUp = () => {
       const userInfo = {
         name: name,
         email: email,
-        role: "user",
+        role: "",
       };
       axiosPublic.post("/users", userInfo).then((res) => {
         if (res.data.insertedId) {
