@@ -8,16 +8,16 @@ import {
 } from "@material-tailwind/react";
 import useAuth from "../../../Hooks/useAuth";
 import { Link } from "react-router-dom";
-
 export function ProfileMenu() {
   const { logOut, user } = useAuth();
+  
   const handleLogOut = () => {
     logOut()
       .then(() => {})
       .catch((error) => console.log(error));
   };
   return (
-    < div className={`${!user ? "hidden" : ""}`}>
+    <div className= {`${!user ? "hidden" : ""}`}>
       <Menu>
         <MenuHandler>
           <Avatar
@@ -45,8 +45,7 @@ export function ProfileMenu() {
             </svg>
 
             <Typography variant="small" className="font-medium">
-              <Link to='/dashboard/addedPets'>
-              DashBoard</Link>
+            <Link to="/dashboard">DashBoard</Link>
             </Typography>
           </MenuItem>
 

@@ -62,7 +62,7 @@ const SignIn = () => {
       })
       .catch((err) =>
         Swal.fire({
-          icon: "err",
+          icon: "error",
           title: `${err}`,
           showConfirmButton: false,
           timer: 1500,

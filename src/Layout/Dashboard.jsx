@@ -17,7 +17,7 @@ const Dashboard = () => {
           <DrawerDefault></DrawerDefault>
         </div>
 
-        <div className="pt-20 z-60">
+        <div className="pt-20 z-60 w-full">
           <Outlet></Outlet>
         </div>
       </div>

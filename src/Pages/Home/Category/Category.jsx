@@ -2,13 +2,15 @@ import { useQuery } from "@tanstack/react-query";
 import Container from "../../../Components/Shared/Container/Container";
 import SectionTitle from "../../../Components/Shared/SectionTitle/SectionTitle";
 import CategoryCard from "./CategoryCard";
-import axios from "axios";
+
+import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 
 const Category = () => {
+  const axiosPublic = useAxiosPublic()
   const { data: categorys } = useQuery({
     queryKey: ["categorys"],
     queryFn: async () => {
-      const res = await axios.get("/category.json");
+      const res = await axiosPublic.get("/categorys");
       return res.data;
     },
   });

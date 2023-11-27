@@ -6,9 +6,13 @@ import Petlisting from "../Pages/PetListing/PetListing/Petlisting";
 import SignIn from "../Pages/Signin/SignIn";
 import SignUp from "../Pages/Register/SignUp";
 import Dashboard from "../Layout/Dashboard";
-import Addpet from "../Pages/Dashboard/Addpet";
-import Myaddedpets from "../Pages/Dashboard/Myaddedpets/Myaddedpets";
+import Addpet from "../Pages/Dashboard/User/Addpets/Addpet";
+import Myaddedpets from "../Pages/Dashboard/User/Myaddedpets/Myaddedpets";
 import PrivateRoute from "./PrivateRoutes";
+import Users from "../Pages/Dashboard/Admin/Users/Users";
+import Allpets from "../Pages/Dashboard/Admin/Allpets/Allpets";
+import Alldonations from "../Pages/Dashboard/Admin/AllDonation/Alldonations";
+import AdminRoute from "./AdminRoute";
 
 export const router = createBrowserRouter([
   {
@@ -50,6 +54,31 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard/addedPets",
         element: <Myaddedpets></Myaddedpets>,
+      },
+      // admin routes
+      {
+        path: "/dashboard/users",
+        element: (
+          <AdminRoute>
+            <Users></Users>
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "/dashboard/allPets",
+        element: (
+          <AdminRoute>
+            <Allpets></Allpets>
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "/dashboard/allDonations",
+        element: (
+          <AdminRoute>
+            <Alldonations></Alldonations>
+          </AdminRoute>
+        ),
       },
     ],
   },
