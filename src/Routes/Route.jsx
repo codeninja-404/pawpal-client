@@ -14,6 +14,7 @@ import Allpets from "../Pages/Dashboard/Admin/Allpets/Allpets";
 import Alldonations from "../Pages/Dashboard/Admin/AllDonation/Alldonations";
 import AdminRoute from "./AdminRoute";
 import UpdatePet from "../Pages/Dashboard/User/UpdatePet/UpdatePet";
+import CreateDonationCampaign from "../Pages/Dashboard/User/CreateDonationCampaign/CreateDonationCampaign";
 
 export const router = createBrowserRouter([
   {
@@ -59,6 +60,10 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard/updatePet/:id",
         element: <UpdatePet></UpdatePet>,
+      },
+      {
+        path: "/dashboard/createDonation",
+        element: <CreateDonationCampaign></CreateDonationCampaign>,
       },
       // admin routes
       {
