@@ -27,6 +27,26 @@ const TableRow = ({ item, idx, refetch }) => {
       }
     });
   };
+
+  const handleStatus = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You want to update this status",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "YES",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosSecure.patch(`/status/${id}`).then((res) => {
+          if (res.data.modifiedCount > 0) {
+            refetch();
+            Swal.fire("Status updated.", "", "success");
+          }
+        });
+      }
+    });
+  };
   return (
     <tr>
       <td className="p-1 border-b border-blue-gray-500">{idx + 1}</td>
@@ -57,7 +77,7 @@ const TableRow = ({ item, idx, refetch }) => {
         >
           <MdDeleteSweep className="text-l" />
         </IconButton>
-        <IconButton size="sm" className="m-1 bg-green-500">
+        <IconButton onClick={() => handleStatus(item._id)} size="sm" className="m-1 bg-green-500">
           <TiTick className="text-l" />
         </IconButton>
       </td>
