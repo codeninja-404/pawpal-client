@@ -1,6 +1,10 @@
+import SectionTitle from "../../../../Components/Shared/SectionTitle/SectionTitle";
+import Table from "./Table";
+
 const Myaddedpets = () => {
   return <div className="mt-10 p-4">
-    <h1>my added pets</h1>
+    <SectionTitle heading={"my added pets"}></SectionTitle>
+    <Table></Table>
   </div>;
 };
 

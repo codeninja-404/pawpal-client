@@ -5,6 +5,7 @@ import {
   ListItemPrefix,
 } from "@material-tailwind/react";
 import { MdPlaylistAddCircle } from "react-icons/md";
+import { CgPlayListCheck } from "react-icons/cg";
 
 import { NavLink } from "react-router-dom";
 import AdminBar from "./AdminBar";
@@ -14,7 +15,7 @@ const Sidebar = () => {
   const [isAdmin] = useAdmin();
   
   return (
-    <div className=" bg-blue-gray-300 p-4 lg:my-5 text-white">
+    <div className=" bg-blue-gray-300  p-4 lg:my-5 text-white">
       {isAdmin ? (
         <>
           <AdminBar></AdminBar>
@@ -42,7 +43,7 @@ const Sidebar = () => {
             <ListItem className="p-1">
               <ListItemPrefix>
                 <p className="text-black text-sm font-bold uppercase flex gap-2 items-center">
-                  <MdPlaylistAddCircle className="text-2xl" /> My added pets
+                  <CgPlayListCheck className="text-2xl" /> My added pets
                 </p>
               </ListItemPrefix>
             </ListItem>

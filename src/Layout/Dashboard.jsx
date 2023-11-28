@@ -9,7 +9,7 @@ const Dashboard = () => {
       <NavBar></NavBar>
 
       <div className="flex  lg:container mx-auto h-screen ">
-        <div className="pt-16 z-10">
+        <div className="pt-16 z-10  h-screen">
           <div className="hidden md:block">
             <Sidebar></Sidebar>
           </div>
@@ -17,7 +17,7 @@ const Dashboard = () => {
           <DrawerDefault></DrawerDefault>
         </div>
 
-        <div className="pt-20 z-60 w-full">
+        <div className="pt-20  w-full">
           <Outlet></Outlet>
         </div>
       </div>

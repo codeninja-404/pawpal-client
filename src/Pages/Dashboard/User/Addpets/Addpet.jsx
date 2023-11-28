@@ -2,10 +2,17 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import SectionTitle from "../../../../Components/Shared/SectionTitle/SectionTitle";
 import { useState } from "react";
 import { imageUpload } from "../../../../api/utils";
+import { Button } from "@material-tailwind/react";
+import useAxiosPublic from "../../../../Hooks/useAxiosPublic";
+import Swal from "sweetalert2";
+import useAuth from "../../../../Hooks/useAuth";
+import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 
 const Addpet = () => {
+  const {user}= useAuth()
   const [imageData, setImageData] = useState(null);
   const [imgURL, setImgURL] = useState("");
+  const axiosSecure = useAxiosSecure();
 
   const initialValues = {
     name: "",
@@ -32,13 +39,15 @@ const Addpet = () => {
     }
   };
 
-  const onSubmit = (values) => {
+  const onSubmit = async (values) => {
     const addedOn = new Date();
     const adopted = false;
-    const pet = { ...values, image: imgURL, addedOn, adopted };
-    console.log(pet);
+    const pet = { ...values, image: imgURL, addedOn, adopted ,email:user?.email };
+    const menuRes = await axiosSecure.post("/addPets", pet);
 
-    //  post data to database
+    if (menuRes.data.insertedId) {
+      Swal.fire("Your pet is added.", "", "success");
+    }
   };
 
   const validate = (values) => {
@@ -226,12 +235,12 @@ const Addpet = () => {
               />
             </div>
 
-            <button
+            <Button
               type="submit"
               className="bg-indigo-500 text-white font-bold py-2 px-4 rounded-md hover:bg-indigo-700 focus:outline-none focus:shadow-outline-indigo active:bg-indigo-800"
             >
               Submit
-            </button>
+            </Button>
           </Form>
         </Formik>
       </div>
