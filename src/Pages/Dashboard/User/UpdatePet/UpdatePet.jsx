@@ -1,25 +1,36 @@
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { useParams } from "react-router-dom";
 import SectionTitle from "../../../../Components/Shared/SectionTitle/SectionTitle";
+import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
+import { useQuery } from "@tanstack/react-query";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import useAuth from "../../../../Hooks/useAuth";
 import { useState } from "react";
 import { imageUpload } from "../../../../api/utils";
 import { Button } from "@material-tailwind/react";
 import Swal from "sweetalert2";
-import useAuth from "../../../../Hooks/useAuth";
-import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 
-const Addpet = () => {
-  const {user}= useAuth()
+const UpdatePet = () => {
+  const axiosSecure = useAxiosSecure();
+  const { id } = useParams();
+  const { user } = useAuth();
   const [imageData, setImageData] = useState(null);
   const [imgURL, setImgURL] = useState("");
-  const axiosSecure = useAxiosSecure();
+
+  const { data: pet } = useQuery({
+    queryKey: ["pet"],
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/pet/${id}`);
+      return res.data;
+    },
+  });
 
   const initialValues = {
-    name: "",
-    age: "",
-    category: "",
-    location: "",
-    shortDescription: "",
-    longDescription: "",
+    name: pet.name,
+    age: pet.age,
+    category: pet.category,
+    location: pet.location,
+    shortDescription: pet.shortDescription,
+    longDescription: pet.longDescription,
   };
   const handleUploadImage = async (e) => {
     const selectedImage = e.target.files[0];
@@ -39,13 +50,15 @@ const Addpet = () => {
   };
 
   const onSubmit = async (values) => {
-    const addedOn = new Date();
-    const adopted = false;
-    const pet = { ...values, image: imgURL, addedOn, adopted ,email:user?.email };
-    const menuRes = await axiosSecure.post("/addPets", pet);
+    const pet = {
+      ...values,
+      image: imgURL,
+    };
+    console.log(pet);
+    const menuRes = await axiosSecure.patch(`/update/${id}`, pet);
 
-    if (menuRes.data.insertedId) {
-      Swal.fire("Your pet is added.", "", "success");
+    if (menuRes.data.modifiedCount > 0) {
+      Swal.fire("Your pet is Updated.", "", "success");
     }
   };
 
@@ -74,9 +87,10 @@ const Addpet = () => {
 
     return errors;
   };
+
   return (
-    <div className=" mt-10 mx-auto w-full p-4 ">
-      <SectionTitle heading={"Add Pet"}></SectionTitle>
+    <div className="mt-10 p-4">
+      <SectionTitle heading={"update pet"}></SectionTitle>
       <div>
         <Formik
           initialValues={initialValues}
@@ -238,7 +252,7 @@ const Addpet = () => {
               type="submit"
               className="bg-indigo-500 text-white font-bold py-2 px-4 rounded-md hover:bg-indigo-700 focus:outline-none focus:shadow-outline-indigo active:bg-indigo-800"
             >
-              Add pet
+              Update pet
             </Button>
           </Form>
         </Formik>
@@ -247,4 +261,4 @@ const Addpet = () => {
   );
 };
 
-export default Addpet;
+export default UpdatePet;

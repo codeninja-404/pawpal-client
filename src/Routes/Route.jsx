@@ -13,6 +13,7 @@ import Users from "../Pages/Dashboard/Admin/Users/Users";
 import Allpets from "../Pages/Dashboard/Admin/Allpets/Allpets";
 import Alldonations from "../Pages/Dashboard/Admin/AllDonation/Alldonations";
 import AdminRoute from "./AdminRoute";
+import UpdatePet from "../Pages/Dashboard/User/UpdatePet/UpdatePet";
 
 export const router = createBrowserRouter([
   {
@@ -54,6 +55,10 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard/addedPets",
         element: <Myaddedpets></Myaddedpets>,
+      },
+      {
+        path: "/dashboard/updatePet/:id",
+        element: <UpdatePet></UpdatePet>,
       },
       // admin routes
       {

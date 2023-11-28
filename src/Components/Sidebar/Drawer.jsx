@@ -15,7 +15,7 @@ export function DrawerDefault() {
   const closeDrawer = () => setOpen(false);
 
   return (
-    <div className="md:hidden  absolute ">
+    <div className="md:hidden  absolute h-screen ">
       <Button className="sticky p-2 bg-transparent text-black border-black border-2 m-2 text-2xl" onClick={openDrawer}>
         <RiMenuUnfoldFill />
       </Button>

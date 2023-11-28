@@ -4,6 +4,7 @@ import { MdDeleteSweep } from "react-icons/md";
 import { TiTick } from "react-icons/ti";
 import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 const TableRow = ({ item, idx, refetch }) => {
   const axiosSecure = useAxiosSecure();
@@ -49,9 +50,15 @@ const TableRow = ({ item, idx, refetch }) => {
   };
   return (
     <tr>
-      <td className="p-1 border-b border-blue-gray-500">{idx + 1}</td>
-      <td className="p-1 border-b border-blue-gray-500">{item.name}</td>
-      <td className="p-1 border-b border-blue-gray-500">{item.category}</td>
+      <td className="p-1 border-b border-blue-gray-500">
+        <p className="font-bold">{idx + 1}</p>
+      </td>
+      <td className="p-1 border-b border-blue-gray-500">
+        <p className="uppercase font-bold">{item.name}</p>
+      </td>
+      <td className="p-1 border-b border-blue-gray-500">
+        <p className="uppercase font-bold text-blue-800">{item.category}</p>
+      </td>
       {/* <td>
                   <Avatar src={item.image} alt="avatar" variant="rounded" />
                 </td> */}
@@ -62,14 +69,20 @@ const TableRow = ({ item, idx, refetch }) => {
         </div>
       </td>
       {item.adopted === false ? (
-        <td className="p-1 border-b border-blue-gray-500">Not adopted</td>
+        <td className="p-1 border-b border-blue-gray-500">
+          <p className="rounded-xl bg-red-100 p-1">Not Adopted</p>
+        </td>
       ) : (
-        <td className="p-1 border-b border-blue-gray-500">Adopted</td>
+        <td className="p-1 border-b  border-blue-gray-500">
+          <p className="rounded-xl bg-green-100 p-1">Adopted</p>
+        </td>
       )}
       <td className=" p-1 border-b border-blue-gray-500   ">
-        <IconButton size="sm" className="m-1 bg-blue-500">
-          <GrUpdate className="text-l" />
-        </IconButton>
+        <Link to={`/dashboard/updatePet/${item._id}`}item={item}>
+          <IconButton size="sm" className="m-1 bg-blue-500">
+            <GrUpdate className="text-l" />
+          </IconButton>
+        </Link>
         <IconButton
           onClick={() => handleDelete(item._id)}
           size="sm"
@@ -77,7 +90,11 @@ const TableRow = ({ item, idx, refetch }) => {
         >
           <MdDeleteSweep className="text-l" />
         </IconButton>
-        <IconButton onClick={() => handleStatus(item._id)} size="sm" className="m-1 bg-green-500">
+        <IconButton
+          onClick={() => handleStatus(item._id)}
+          size="sm"
+          className="m-1 bg-green-500"
+        >
           <TiTick className="text-l" />
         </IconButton>
       </td>
