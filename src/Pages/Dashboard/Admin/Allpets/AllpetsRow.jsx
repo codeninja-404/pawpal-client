@@ -4,9 +4,10 @@ import { MdDeleteSweep } from "react-icons/md";
 import { TiTick } from "react-icons/ti";
 import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import { IoClose } from "react-icons/io5";
 import { Link } from "react-router-dom";
 
-const TableRow = ({ item, idx, refetch }) => {
+const AllpetsRow = ({ item, idx, refetch }) => {
   const axiosSecure = useAxiosSecure();
   const handleDelete = (id) => {
     Swal.fire({
@@ -29,7 +30,7 @@ const TableRow = ({ item, idx, refetch }) => {
     });
   };
 
-  const handleStatus = (id) => {
+  const handleStatus = (id, status) => {
     Swal.fire({
       title: "Are you sure?",
       text: "You want to update this status",
@@ -39,7 +40,7 @@ const TableRow = ({ item, idx, refetch }) => {
       confirmButtonText: "YES",
     }).then((result) => {
       if (result.isConfirmed) {
-        axiosSecure.patch(`/status/${id}`).then((res) => {
+        axiosSecure.patch(`/statusAdmin/${id}`, status).then((res) => {
           if (res.data.modifiedCount > 0) {
             refetch();
             Swal.fire("Status updated.", "", "success");
@@ -78,7 +79,7 @@ const TableRow = ({ item, idx, refetch }) => {
         </td>
       )}
       <td className=" p-1 border-b border-blue-gray-500   ">
-        <Link to={`/dashboard/updatePet/${item._id}`}item={item}>
+        <Link to={`/dashboard/updatePet/${item._id}`} item={item}>
           <IconButton size="sm" className="m-1 bg-blue-500">
             <GrUpdate className="text-l" />
           </IconButton>
@@ -92,15 +93,19 @@ const TableRow = ({ item, idx, refetch }) => {
         </IconButton>
         {item.adopted === false ? (
           <IconButton
-            onClick={() => handleStatus(item._id)}
+            onClick={() => handleStatus(item._id, { adopted: true })}
             size="sm"
             className="m-1 bg-green-500"
           >
             <TiTick className="text-l" />
           </IconButton>
         ) : (
-          <IconButton disabled size="sm" className="m-1 bg-green-500">
-            <TiTick className="text-l" />
+          <IconButton
+            onClick={() => handleStatus(item._id, { adopted: false })}
+            size="sm"
+            className="m-1 "
+          >
+            <IoClose className="text-l" />
           </IconButton>
         )}
       </td>
@@ -108,4 +113,4 @@ const TableRow = ({ item, idx, refetch }) => {
   );
 };
 
-export default TableRow;
+export default AllpetsRow;
