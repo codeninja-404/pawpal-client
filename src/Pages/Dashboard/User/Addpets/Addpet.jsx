@@ -134,7 +134,7 @@ const Addpet = () => {
                   Age:
                 </label>
                 <Field
-                  type="text"
+                  type="number"
                   id="age"
                   name="age"
                   className="w-full p-2 border border-gray-300 rounded-md"

@@ -12,7 +12,6 @@ import Swal from "sweetalert2";
 const UpdatePet = () => {
   const axiosSecure = useAxiosSecure();
   const { id } = useParams();
-  const { user } = useAuth();
   const [imageData, setImageData] = useState(null);
   const [imgURL, setImgURL] = useState("");
 
@@ -25,12 +24,12 @@ const UpdatePet = () => {
   });
 
   const initialValues = {
-    name: pet.name,
-    age: pet.age,
-    category: pet.category,
-    location: pet.location,
-    shortDescription: pet.shortDescription,
-    longDescription: pet.longDescription,
+    name: pet?.name,
+    age: pet?.age,
+    category: pet?.category,
+    location: pet?.location,
+    shortDescription: pet?.shortDescription,
+    longDescription: pet?.longDescription,
   };
   const handleUploadImage = async (e) => {
     const selectedImage = e.target.files[0];
@@ -148,7 +147,7 @@ const UpdatePet = () => {
                   Age:
                 </label>
                 <Field
-                  type="text"
+                  type="number"
                   id="age"
                   name="age"
                   className="w-full p-2 border border-gray-300 rounded-md"
