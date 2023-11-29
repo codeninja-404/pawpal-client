@@ -67,7 +67,7 @@ const Sidebar = () => {
               </ListItemPrefix>
             </ListItem>
           </NavLink>
-          <NavLink to="/dashboard/myDoCa">
+          <NavLink to="/dashboard/myDonationCampaigns">
             <ListItem className="p-1">
               <ListItemPrefix>
                 <p className="text-black text-xs font-bold uppercase flex gap-2 items-center">

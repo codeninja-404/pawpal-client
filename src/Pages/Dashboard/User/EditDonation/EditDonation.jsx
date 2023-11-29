@@ -6,19 +6,29 @@ import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 import useAuth from "../../../../Hooks/useAuth";
 import { useState } from "react";
 import { Button } from "@material-tailwind/react";
+import { useQuery } from "@tanstack/react-query";
+import { useParams } from "react-router-dom";
 
-const CreateDonationCampaign = () => {
-  const { user } = useAuth();
+const EditDonation = () => {
+  const { id } = useParams();
   const [imageData, setImageData] = useState(null);
   const [imgURL, setImgURL] = useState("");
   const axiosSecure = useAxiosSecure();
 
+  const { data } = useQuery({
+    queryKey: ["data"],
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/singleDonation/${id}`);
+      return res.data;
+    },
+  });
+
   const initialValues = {
-    maxAmount: "",
-    name: "",
-    lastDate: "",
-    shortDescription: "",
-    longDescription: "",
+    maxAmount: data?.maxAmount,
+    name: data?.name,
+    lastDate: data?.lastDate,
+    shortDescription: data?.shortDescription,
+    longDescription: data?.longDescription,
   };
   const handleUploadImage = async (e) => {
     const selectedImage = e.target.files[0];
@@ -38,21 +48,16 @@ const CreateDonationCampaign = () => {
   };
 
   const onSubmit = async (values) => {
-    const addedOn = new Date();
-
     const donation = {
       ...values,
       image: imgURL,
-      addedOn,
-      status: true,
-      email: user?.email,
-      donated: 0,
     };
+    console.log(donation);
 
-    const menuRes = await axiosSecure.post("/createDonation", donation);
+    const menuRes = await axiosSecure.patch(`/updateDonation/${id}`, donation);
 
-    if (menuRes.data.insertedId) {
-      Swal.fire("Donation Campaign is created.", "", "success");
+    if (menuRes.data.modifiedCount > 0) {
+      Swal.fire("Donation Campaign is Updated.", "", "success");
     }
   };
 
@@ -214,7 +219,7 @@ const CreateDonationCampaign = () => {
               type="submit"
               className="bg-indigo-500 text-white font-bold py-2 px-4 rounded-md hover:bg-indigo-700 focus:outline-none focus:shadow-outline-indigo active:bg-indigo-800"
             >
-              Create donation campaign
+              Edit donation campaign
             </Button>
           </Form>
         </Formik>
@@ -223,4 +228,4 @@ const CreateDonationCampaign = () => {
   );
 };
 
-export default CreateDonationCampaign;
+export default EditDonation;

@@ -15,6 +15,8 @@ import Alldonations from "../Pages/Dashboard/Admin/AllDonation/Alldonations";
 import AdminRoute from "./AdminRoute";
 import UpdatePet from "../Pages/Dashboard/User/UpdatePet/UpdatePet";
 import CreateDonationCampaign from "../Pages/Dashboard/User/CreateDonationCampaign/CreateDonationCampaign";
+import MyDonationCampaigns from "../Pages/Dashboard/User/MyDonationCampaigns/MyDonationCampaigns";
+import EditDonation from "../Pages/Dashboard/User/EditDonation/EditDonation";
 
 export const router = createBrowserRouter([
   {
@@ -64,6 +66,14 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard/createDonation",
         element: <CreateDonationCampaign></CreateDonationCampaign>,
+      },
+      {
+        path: "/dashboard/myDonationCampaigns",
+        element: <MyDonationCampaigns></MyDonationCampaigns>,
+      },
+      {
+        path: "/dashboard/editDonation/:id",
+        element: <EditDonation></EditDonation>,
       },
       // admin routes
       {
