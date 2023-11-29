@@ -11,7 +11,7 @@ const SignUp = () => {
   const { createUser, updateUserProfile } = useAuth();
   const [imagePre, setImagePre] = useState(null);
   const [photo, setPhoto] = useState("");
-  const axiosPublic = useAxiosPublic()
+  const axiosPublic = useAxiosPublic();
   const navigate = useNavigate();
 
   const handleImageChange = async (event) => {
@@ -40,21 +40,18 @@ const SignUp = () => {
         icon: "error",
         title: "Password must have atleast 6 charecters.",
         showConfirmButton: false,
-        
       });
     } else if (!/[A-Z]/.test(password)) {
       return Swal.fire({
         icon: "error",
         title: "Password must have atleast one uppercase letter.",
         showConfirmButton: false,
-        
       });
     } else if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
       return Swal.fire({
         icon: "error",
         title: "Password must have special charecter.",
         showConfirmButton: false,
-       
       });
     }
     try {
@@ -62,23 +59,22 @@ const SignUp = () => {
       const result = await createUser(email, password);
       await updateUserProfile(name, imageData?.data?.display_url);
       const userInfo = {
-        name: name,
-        email: email,
+        name: result.user?.displayName,
+        email: result.user?.email,
+        image: result.user?.photoURL,
         role: "",
       };
       axiosPublic.post("/users", userInfo).then((res) => {
         if (res.data.insertedId) {
-          
           Swal.fire({
             icon: "success",
             title: "User created successfully.",
             showConfirmButton: false,
             timer: 1500,
           });
-          navigate('/');
+          navigate("/");
         }
       });
-
     } catch (err) {
       console.log(err);
       Swal.fire({
