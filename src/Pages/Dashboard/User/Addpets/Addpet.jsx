@@ -42,9 +42,9 @@ const Addpet = () => {
     const addedOn = new Date();
     const adopted = false;
     const pet = { ...values, image: imgURL, addedOn, adopted ,email:user?.email };
-    const menuRes = await axiosSecure.post("/addPets", pet);
+    const res = await axiosSecure.post("/addPets", pet);
 
-    if (menuRes.data.insertedId) {
+    if (res.data.insertedId) {
       Swal.fire("Your pet is added.", "", "success");
     }
   };

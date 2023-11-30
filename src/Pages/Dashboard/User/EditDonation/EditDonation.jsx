@@ -54,9 +54,9 @@ const EditDonation = () => {
     };
     console.log(donation);
 
-    const menuRes = await axiosSecure.patch(`/updateDonation/${id}`, donation);
+    const res = await axiosSecure.patch(`/updateDonation/${id}`, donation);
 
-    if (menuRes.data.modifiedCount > 0) {
+    if (res.data.modifiedCount > 0) {
       Swal.fire("Donation Campaign is Updated.", "", "success");
     }
   };

@@ -49,9 +49,9 @@ const CreateDonationCampaign = () => {
       donated: 0,
     };
 
-    const menuRes = await axiosSecure.post("/createDonation", donation);
+    const res = await axiosSecure.post("/createDonation", donation);
 
-    if (menuRes.data.insertedId) {
+    if (res.data.insertedId) {
       Swal.fire("Donation Campaign is created.", "", "success");
     }
   };

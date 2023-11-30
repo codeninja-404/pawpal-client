@@ -7,6 +7,7 @@ import {
     Tooltip,
     Button,
   } from "@material-tailwind/react";
+import { Link } from "react-router-dom";
 
 const PetCard = ({item}) => {
     return (
@@ -27,7 +28,8 @@ const PetCard = ({item}) => {
         </CardBody>
         <CardFooter className="flex justify-center pt-2">
           <Tooltip content="VIEW PET DETAILS">
-            <Button>Details</Button>
+            <Link to={`/petDetails/${item._id}`}>
+            <Button>Details</Button></Link>
           </Tooltip>
           
         </CardFooter>

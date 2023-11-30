@@ -54,9 +54,9 @@ const UpdatePet = () => {
       image: imgURL,
     };
     console.log(pet);
-    const menuRes = await axiosSecure.patch(`/update/${id}`, pet);
+    const res = await axiosSecure.patch(`/update/${id}`, pet);
 
-    if (menuRes.data.modifiedCount > 0) {
+    if (res.data.modifiedCount > 0) {
       Swal.fire("Your pet is Updated.", "", "success");
     }
   };
