@@ -18,6 +18,9 @@ import CreateDonationCampaign from "../Pages/Dashboard/User/CreateDonationCampai
 import MyDonationCampaigns from "../Pages/Dashboard/User/MyDonationCampaigns/MyDonationCampaigns";
 import EditDonation from "../Pages/Dashboard/User/EditDonation/EditDonation";
 import PetDetails from "../Pages/PetListing/PetDetails/PetDetails";
+import DonationCampaigns from "../Pages/DonationCampaigns/DonationCampaigns/DonationCampaigns";
+import DonationDetails from "../Pages/DonationCampaigns/DonationDetails/DonationDetails";
+
 
 export const router = createBrowserRouter([
   {
@@ -40,6 +43,14 @@ export const router = createBrowserRouter([
       {
         path: "/petListing/:category",
         element: <Petlisting></Petlisting>,
+      },
+      {
+        path: "/donationCampaigns",
+        element: <DonationCampaigns></DonationCampaigns>
+      },
+      {
+        path: "/donationDetails/:id",
+        element: <DonationDetails></DonationDetails>,
       },
     ],
   },

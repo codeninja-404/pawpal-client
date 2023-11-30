@@ -6,7 +6,7 @@ import useAuth from "../../../../Hooks/useAuth";
 
 
 const AllDonationTable = () => {
-    const { user } = useAuth();
+   
     const axiosSecure = useAxiosSecure();
     const { refetch, data = [] } = useQuery({
       queryKey: ["allCampaigns"],

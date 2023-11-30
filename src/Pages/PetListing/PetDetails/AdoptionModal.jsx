@@ -1,9 +1,10 @@
 import {
   Button,
   Dialog,
-  DialogHeader,
+ 
   DialogBody,
   DialogFooter,
+  DialogHeader,
 } from "@material-tailwind/react";
 import { useState } from "react";
 import useAuth from "../../../Hooks/useAuth";
@@ -42,6 +43,7 @@ const AdoptionModal = ({ handleOpen, open, petId }) => {
     <>
       <Dialog open={open} handler={handleOpen}>
         <form onSubmit={handleSubmit}>
+        <DialogHeader>Adoption Form.</DialogHeader>
           <DialogBody>
             <div className="flex gap-2 ">
               <div className="flex-1">

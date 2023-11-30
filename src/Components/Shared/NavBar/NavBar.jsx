@@ -29,25 +29,40 @@ const NavBar = () => {
         as="li"
         variant="small"
         color="blue-gray"
-        className=" font-bold hover:text-[#ff7104]  hover:border-b-[3px] border-[#ff7104] "
+        className=" font-bold  "
       >
-        <NavLink to="/">HOME</NavLink>
+        <NavLink
+          className="hover:text-[#ff7104] pb-1 hover:border-b-[3px] border-[#ff7104]"
+          to="/"
+        >
+          HOME
+        </NavLink>
       </Typography>
       <Typography
         as="li"
         variant="small"
         color="blue-gray"
-        className="font-bold hover:text-[#ff7104]  hover:border-b-[3px] border-[#ff7104]"
+        className="font-bold "
       >
-        <NavLink to="/petListing">PET LISTING</NavLink>
+        <NavLink
+          className="hover:text-[#ff7104] pb-1 hover:border-b-[3px] border-[#ff7104]"
+          to="/petListing"
+        >
+          PET LISTING
+        </NavLink>
       </Typography>
       <Typography
         as="li"
         variant="small"
         color="blue-gray"
-        className="font-bold hover:text-[#ff7104]  hover:border-b-[3px] border-[#ff7104]"
+        className="font-bold "
       >
-        <NavLink to="/">DONATION CAMPAIGNS</NavLink>
+        <NavLink
+          className="hover:text-[#ff7104] pb-1 hover:border-b-[3px] border-[#ff7104]"
+          to="/donationCampaigns"
+        >
+          DONATION CAMPAIGNS
+        </NavLink>
       </Typography>
     </ul>
   );
@@ -62,7 +77,7 @@ const NavBar = () => {
             <div className="flex items-center gap-4">
               <div className="mr-4 hidden lg:block">{navList}</div>
               <div className="flex items-center gap-x-1">
-                <Link to="/signin" className={`${user ? "hidden" : ""}`}>
+                <Link to="/signin" className={` ${user ? "hidden" : ""}`}>
                   <Button size="sm" className="hidden lg:inline-block">
                     <span>sign in</span>
                   </Button>
@@ -118,7 +133,7 @@ const NavBar = () => {
             <Collapse open={openNav}>
               {navList}
               <div className="flex items-center gap-x-1">
-                <Link to="/signin"  className={`${user ? "hidden" : ""}`}>
+                <Link to="/signin" className={`${user ? "hidden" : ""}`}>
                   <Button size="sm">
                     <span>sign in</span>{" "}
                   </Button>

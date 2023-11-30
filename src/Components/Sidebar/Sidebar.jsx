@@ -52,7 +52,7 @@ const Sidebar = () => {
               </ListItemPrefix>
             </ListItem>
           </NavLink>
-          <NavLink to="/dashboard/adoptionRequest">
+          <NavLink to="#">
             <ListItem className="p-1">
               <ListItemPrefix>
                 <p className="text-black text-sm font-bold uppercase flex gap-2 items-center">
@@ -81,7 +81,7 @@ const Sidebar = () => {
               </ListItemPrefix>
             </ListItem>
           </NavLink>
-          <NavLink to="/dashboard/myDonation">
+          <NavLink to="#">
             <ListItem className="p-1">
               <ListItemPrefix>
                 <p className="text-black text-sm font-bold uppercase flex gap-2 items-center">
