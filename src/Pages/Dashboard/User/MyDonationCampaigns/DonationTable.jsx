@@ -8,7 +8,7 @@ const DonationTable = () => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
   const { refetch, data = [] } = useQuery({
-    queryKey: ["myAddedPets", user?.email],
+    queryKey: ["myAddedCampaigns", user?.email],
     queryFn: async () => {
       const res = await axiosSecure.get(
         `/myAddedCampaigns?email=${user?.email}`

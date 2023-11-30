@@ -10,7 +10,7 @@ const AllPetsTable = () => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
   const { refetch, data = [] } = useQuery({
-    queryKey: ["allPets", user?.email],
+    queryKey: ["allPets"],
     queryFn: async () => {
       const res = await axiosSecure.get(`/allPets`);
       return res.data;

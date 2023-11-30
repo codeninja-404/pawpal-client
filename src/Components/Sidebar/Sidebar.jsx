@@ -6,6 +6,10 @@ import {
 } from "@material-tailwind/react";
 import { MdPlaylistAddCircle } from "react-icons/md";
 import { CgPlayListCheck } from "react-icons/cg";
+import { VscGitPullRequestNewChanges } from "react-icons/vsc";
+import { MdCampaign } from "react-icons/md";
+import { SiCampaignmonitor } from "react-icons/si";
+import { GiPayMoney } from "react-icons/gi";
 
 import { NavLink } from "react-router-dom";
 import AdminBar from "./AdminBar";
@@ -52,7 +56,7 @@ const Sidebar = () => {
             <ListItem className="p-1">
               <ListItemPrefix>
                 <p className="text-black text-sm font-bold uppercase flex gap-2 items-center">
-                  <MdPlaylistAddCircle className="text-2xl" /> Adoption request
+                  <VscGitPullRequestNewChanges className="text-2xl" /> Adoption request
                 </p>
               </ListItemPrefix>
             </ListItem>
@@ -61,7 +65,7 @@ const Sidebar = () => {
             <ListItem className="p-1">
               <ListItemPrefix>
                 <p className="text-black text-xs font-bold uppercase flex gap-2 items-center">
-                  <MdPlaylistAddCircle className="text-2xl" /> Create donation
+                  <MdCampaign className="text-2xl" /> Create donation
                   campaign
                 </p>
               </ListItemPrefix>
@@ -71,7 +75,7 @@ const Sidebar = () => {
             <ListItem className="p-1">
               <ListItemPrefix>
                 <p className="text-black text-xs font-bold uppercase flex gap-2 items-center">
-                  <MdPlaylistAddCircle className="text-2xl" />
+                  <SiCampaignmonitor className="text-2xl" />
                   My donation campaign
                 </p>
               </ListItemPrefix>
@@ -81,7 +85,7 @@ const Sidebar = () => {
             <ListItem className="p-1">
               <ListItemPrefix>
                 <p className="text-black text-sm font-bold uppercase flex gap-2 items-center">
-                  <MdPlaylistAddCircle className="text-2xl" /> My donation
+                  <GiPayMoney className="text-2xl" /> My donation
                 </p>
               </ListItemPrefix>
             </ListItem>

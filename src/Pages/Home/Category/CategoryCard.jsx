@@ -16,7 +16,7 @@ const CategoryCard = ({ category }) => {
         <h2 className="mb-6 block font-sans text-4xl font-bold  text-green-100 uppercase ">
           {category?.category}
         </h2>
-        <Link>
+        <Link to={`/petListing/${category?.category}`}>
           <Button className=" bg-green-500"> VIEW PETS</Button>
         </Link>
       </div>

@@ -32,6 +32,10 @@ export const router = createBrowserRouter([
         path: "/petListing",
         element: <Petlisting></Petlisting>,
       },
+      {
+        path: "/petListing/:category",
+        element: <Petlisting></Petlisting>,
+      },
     ],
   },
   {
